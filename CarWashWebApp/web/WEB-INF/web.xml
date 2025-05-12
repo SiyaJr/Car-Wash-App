@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>AddAppointmentServlet</servlet-name>
+        <servlet-class>servlet.AddAppointmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FindAppointmentServlet</servlet-name>
+        <servlet-class>servlet.FindAppointmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAppointmentServlet</servlet-name>
+        <servlet-class>servlet.EditAppointmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAllAppointments</servlet-name>
+        <servlet-class>servlet.ViewAllAppointments</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAppointmentsByServiceServlet</servlet-name>
+        <servlet-class>servlet.GetAppointmentsByServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddAppointmentServlet</servlet-name>
+        <url-pattern>/AddAppointmentServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FindAppointmentServlet</servlet-name>
+        <url-pattern>/FindAppointmentServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAppointmentServlet</servlet-name>
+        <url-pattern>/EditAppointmentServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllAppointments</servlet-name>
+        <url-pattern>/ViewAllAppointments.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAppointmentsByServiceServlet</servlet-name>
+        <url-pattern>/GetAppointmentsByServiceServlet.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <error-page>
+        
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+        
+    </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    
+    
+    
+    <error-page>
+        <exception-type>java.lang.NumberFormatException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
+    
+    
+    <error-page>
+        <exception-type>java.lang.NullPointerException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
+    
+     <error-page>
+        <exception-type>javax.ejb.EJBException</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
+    
+    
+    
+</web-app>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Appointment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            animation: fadeInBody 1.5s ease-in;
+        }
+
+        @keyframes fadeInBody {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px 40px;
+            margin-top: 60px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px 8px;
+            vertical-align: middle;
+        }
+
+        td:first-child {
+            width: 35%;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: #74ebd5;
+            box-shadow: 0 0 8px rgba(116, 235, 213, 0.4);
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            td:first-child {
+                display: block;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            td {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            const phoneInput = document.forms["appointmentForm"]["phone"].value;
+            const phoneDigits = phoneInput.replace(/\D/g, '');
+
+            if (phoneDigits.length < 10) {
+                alert("Phone number must be at least 10 digits long.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Create an Appointment</h1>
+        <p>Please fill in the details for your car wash:</p>
+
+        <form name="appointmentForm" action="AddAppointmentServlet.do" method="POST" onsubmit="return validateForm();">
+            <table>
+                <tr>
+                    <td>ID:</td>
+                    <td><input type="text" name="id" required /></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name" required /></td>
+                </tr>
+                <tr>
+                    <td>Surname:</td>
+                    <td><input type="text" name="surname" /></td>
+                </tr>
+                <tr>
+                    <td>Phone number:</td>
+                    <td><input type="text" name="phone" id="phone" /></td>
+                </tr>
+                <tr>
+                    <td>Car Name:</td>
+                    <td><input type="text" name="car_name" /></td>
+                </tr>
+                <tr>
+                    <td>Number Plate:</td>
+                    <td><input type="text" name="number_plate" /></td>
+                </tr>
+                <tr>
+                    <td>Service Type:</td>
+                    <td>
+                        <select name="description">
+                            <option value="Basic Wash">Basic Wash</option>
+                            <option value="Deluxe Wash">Deluxe Wash</option>
+                            <option value="Premium Wash">Premium Wash</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Appointment Date:</td>
+                    <td><input type="date" name="appoint_date" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add Appointment" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
